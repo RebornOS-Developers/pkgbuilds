@@ -1,0 +1,31 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=gtk-theme-macos-sierra
+_pkgname=macOS
+pkgver=6.1
+pkgrel=1
+pkgdesc='Theme reproducing the clean and bright look of Apple OS'
+arch=('any')
+url='https://github.com/B00merang-Project/macOS'
+license=('GPL3')
+depends=('gtk3>=3.0'
+	'gnome-themes-standard'
+	'gdk-pixbuf2'
+	'gtk-engines'
+	'gtk-engine-murrine')
+optdepends=('gnome-shell>=3.10: The GNOME Shell' 'gnome-tweak-tool: A graphical tool to tweak gnome settings')
+source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
+sha512sums=('1081ef3134f1399789a36a6e30cebe3df9410fce64ecc0a114f2d4692112085ab8f760e1e6a7e812a3d1fc36fac05de4d2a4fee156f49150e751f3408bea3109')
+package() {
+        cd ${srcdir}/${_pkgname}-${pkgver}
+	install -dm755 ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+	cp --no-preserve=mode ${srcdir}/${_pkgname}-${pkgver}/index.theme ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+	cp --no-preserve=mode -r ${srcdir}/${_pkgname}-${pkgver}/gnome-shell/ ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+	cp --no-preserve=mode -r ${srcdir}/${_pkgname}-${pkgver}/gtk-2.0/ ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+	cp --no-preserve=mode -r ${srcdir}/${_pkgname}-${pkgver}/gtk-3.0/ ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+	cp --no-preserve=mode -r ${srcdir}/${_pkgname}-${pkgver}/metacity-1/ ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+	cp --no-preserve=mode -r ${srcdir}/${_pkgname}-${pkgver}/xfwm4/ ${pkgdir}/usr/share/themes/${_pkgname}-${pkgver}
+
+	find ${pkgdir}/usr/ -type f -exec chmod 644 {} \;
+	find ${pkgdir}/usr/ -type d -exec chmod 755 {} \;
+} 

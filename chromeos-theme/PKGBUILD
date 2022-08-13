@@ -1,0 +1,21 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=ChromeOS-theme
+pkgver=2021.08.18
+_pkgver=2021-08-18
+pkgrel=1
+pkgdesc='ChromeOS is a Material Design theme for GNOME/GTK based desktop environments. Based on nana-4 -- materia-theme'
+arch=('any')
+url='https://github.com/vinceliuice/ChromeOS-theme'
+license=('GPL3')
+optdepends=('gtk-engine-murrine' 'gtk-engines')
+conflicts=("chromeos-gtk-theme-git")
+source=(${url}/archive/refs/tags/${_pkgver}.tar.gz)
+sha512sums=('a2946244a5f1e08d1c944d4bdbd702908b0e6084a9988295f34be68e5257971a0ee1e67428ef76ca0809dee32ea0e4d40113619f4eda945ccbaa3a900c500de2')
+
+package() {
+	cd ${srcdir}/${pkgname}-${_pkgver}
+	install -m755 -d ${pkgdir}/usr/share/themes
+	./install.sh \
+		 --dest "${pkgdir}/usr/share/themes"
+}

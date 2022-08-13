@@ -1,0 +1,27 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=paper-icon-theme
+pkgver=1.5.0
+pkgrel=1
+pkgdesc='Paper is based around the use of bold colours and simple geometric shapes'
+arch=('any')
+url='https://github.com/snwh/paper-icon-theme'
+license=('Attribution-ShareAlike 4.0 International')
+provides=("${pkgname}-${pkgver}")
+depends=('gtk-update-icon-cache')
+makedepends=('meson')
+conflicts=("paper-icon-theme-git")
+source=("${url}/archive/refs/tags/v.${pkgver}".tar.gz)
+sha512sums=('be84bc332eba0e9c216435a130d3eed180fe1807d81ff7b3aadb3914fc130c9e243fb7fccef8febae1da6655f8e8a1bcf9420afb429e11e4c79bcbbb5bcd291b')
+
+build() {
+    cd "${pkgname}-v.${pkgver}"
+    meson build --prefix=/usr
+}
+
+package() {
+    cd "${pkgname}-v.${pkgver}"
+    DESTDIR="$pkgdir" ninja -C "build" install
+    find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+    find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}

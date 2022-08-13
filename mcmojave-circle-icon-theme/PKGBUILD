@@ -1,0 +1,30 @@
+# Maintainer: ValHue <vhuelamo at gmail dot com>
+# Contributor: ValHue <vhuelamo at gmail dot com>
+# Modified by Rafael from RebornOS
+
+pkgname=mcmojave-circle-icon-theme
+iname=McMojave-circle
+pkgver=2022.07.03
+pkgrel=1
+commitn=0a8db5eebd58590f6af84f5a5d70e09900de416a
+pkgdesc="MacOSX Mojave like circle icon theme for linux desktops."
+arch=('any')
+url="https://github.com/vinceliuice/${iname}"
+license=('GPL3')
+depends=('gtk-update-icon-cache' 'hicolor-icon-theme' 'numix-icon-theme-circle')
+optdepends=('mojave-gtk-theme: Recommended GTK theme.')
+options=('!strip')
+source=("${iname}::git+${url}#commit=${commitn}")
+sha256sums=('SKIP')
+
+package() {
+    cd ${srcdir}/${iname}
+    install -m755 -d ${pkgdir}/usr/share/icons
+    install -m755 -d ${pkgdir}/usr/share/licenses/${iname}
+    install -Dm644 COPYING ${pkgdir}/usr/share/licenses/${iname}/LICENSE
+    ./install.sh  \
+        --all \
+        --circle \
+        --dest ${pkgdir}/usr/share/icons
+}
+

@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=obsidian-theme-2
+_pkgname=Obsidian-2
+_pkgname2=theme-obsidian-2
+pkgver=2.20
+pkgrel=1
+pkgdesc="Gnome theme, based upon Adwaita-Maia dark skin "
+arch=('any')
+url="https://github.com/madmaxms/theme-obsidian-2"
+license=('GPL3')
+provides=("${_pkgname}")
+options=(!strip !emptydirs)
+source=("${url}/archive/refs/tags/v${pkgver}.tar.gz")
+sha512sums=('7334b3122a8b6d1020745ced25331d2fd7735da9aaaff3cac821ae17b32d285e67a34b790c7129a67f80ee47f89e729a07a2a648f6bf171e0f2ca9f33dbed89b')
+
+package() {
+	mkdir -p ${pkgdir}/usr/share/themes/${_pkgname}
+  	cp -r ${srcdir}/${_pkgname2}-${pkgver}/${_pkgname}/* ${pkgdir}/usr/share/themes/${_pkgname}
+  	find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+        find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+

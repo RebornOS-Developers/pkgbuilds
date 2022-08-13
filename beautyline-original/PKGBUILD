@@ -1,0 +1,23 @@
+# Original and unmodified icons from sajjad606
+# Maintainer: Rafael - RebornOS Linux
+# Source downloaded from url (See below)
+# For KDE Plasma, Gnome, XFCE, LXDE, Cinnamon, Mate, LXQt, Deepin, Elementary, Budgie
+
+pkgname=beautyline-original
+_pkgname=BeautyLine
+pkgver=20211220092736
+pkgrel=1
+pkgdesc="Outlined icons Designed to have unified look and comprehensive coverage."
+arch=('any')
+url='https://store.kde.org/p/1425426/'
+source=("${_pkgname}-${pkgver}.tar.gz")
+license=('gpl3')
+options=('!strip')
+sha256sums=('b47f363fd97bffe8b4a7e032b890b69b83790f7d81edc411e0f707f8fe5131b8')
+
+package() {
+	mkdir -p ${pkgdir}/usr/share/icons/${_pkgname}
+	cp -r ${srcdir}/${_pkgname} ${pkgdir}/usr/share/icons/
+        find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+        find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}

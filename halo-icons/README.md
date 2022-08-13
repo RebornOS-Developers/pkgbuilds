@@ -1,0 +1,12 @@
+# halo-icons
+
+Halo is an icon theme for Linux desktops, the set is inspired by the latest flat design trend from Alejandro Camarena
+
+https://github.com/erikdubois/halo-icons
+
+How to clone this repo:
+
+```
+git clone https://gitlab.com/rebornos-team/themes-and-icons/halo-icons.git
+```
+

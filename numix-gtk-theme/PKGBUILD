@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=numix-gtk-theme
+_pkgname=Numix
+pkgver=2.6.7
+pkgrel=1
+pkgdesc='A modern flat theme with a combination of light and dark elements. It supports GNOME, Unity, Xfce and Openbox.'
+arch=('any')
+url='https://github.com/numixproject/numix-gtk-theme'
+license=('GPL3')
+makedepends=('gdk-pixbuf2' 'glib2' 'sassc')
+optdepends=('gtk-engine-murrine: GTK2 theme engine')
+conflicts=('numix-gtk-theme-git')
+provides=("${pkgname}-${pkgver}")
+source=("${url}/releases/download/${pkgver}/${_pkgname}.zip")
+sha512sums=('883f568246c14c3cfee6ddc158978def71ed7e0e7098ec41487bc047d34ff74f2ae2614494b2a69d9fd42051ba2d9d4f84b3bf51306de1b085c92418890f8db4')
+
+package() {
+  mkdir -p ${pkgdir}/usr/share/themes/
+  cp -r ${srcdir}/${_pkgname} ${pkgdir}/usr/share/themes
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}

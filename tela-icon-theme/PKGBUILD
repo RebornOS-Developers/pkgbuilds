@@ -1,0 +1,26 @@
+# Maintainer: Rafael from RebornOS
+# All color versions added
+
+pkgname=tela-icon-theme
+iname=Tela
+pkgver=2022.02.21
+commitn=fcd24febb17740a71c577bf027ae8960d935dd8e
+pkgrel=1.2
+pkgdesc="A flat colorful Design icon theme, all color versions"
+arch=('any')
+url="https://github.com/vinceliuice/Tela-icon-theme"
+license=('GPL3')
+depends=('gtk-update-icon-cache')
+options=('!strip')
+
+source=("${pkgname}::git+${url}#commit=${commitn}")
+sha512sums=('SKIP')
+
+package() {
+    mkdir -p ${pkgdir}/usr/share/licenses/${iname}
+    cd ${srcdir}/${pkgname}
+    install -m755 -d ${pkgdir}/usr/share/icons
+    install -m 644 ${srcdir}/${pkgname}/COPYING ${pkgdir}/usr/share/licenses/${iname}/LICENSE
+    ./install.sh -a -d ${pkgdir}/usr/share/icons
+}
+

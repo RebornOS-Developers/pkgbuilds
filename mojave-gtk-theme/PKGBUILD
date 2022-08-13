@@ -1,0 +1,29 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=mojave-gtk-theme
+tname=Mojave-gtk-theme
+pkgver=2022.06.07
+pkgrel=1.1
+commitn=ac90585b4481add0a45142c42e12e7cc458d5de3
+pkgdesc='Mac OSX like theme for GTK 3, GTK 2 and Gnome-Shell which supports GTK 3 and GTK 2 based desktop environments.'
+arch=('any')
+url='https://github.com/vinceliuice/Mojave-gtk-theme'
+license=('GPL3')
+makedepends=('gdk-pixbuf2' 'glib2' 'sassc')
+optdepends=('gtk-engine-murrine: GTK2 theme engine')
+conflicts=('mojave-gtk-theme-git')
+provides=("${pkgname}-${pkgver}")
+source=("${tname}::git+${url}#commit=${commitn}")
+sha512sums=('SKIP')
+
+package() {
+	cd ${srcdir}/${tname}
+	install -m755 -d ${pkgdir}/usr/share/themes
+	./install.sh \
+		 --dest ${pkgdir}/usr/share/themes \
+		 --icon arch
+        find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+        find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+
+

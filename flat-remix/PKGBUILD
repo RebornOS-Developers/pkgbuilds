@@ -1,0 +1,20 @@
+# Maintainer: Daniel Ruiz de Alegria <daniruizdealegria@gmail.com>
+# Modified by Rafael from azul
+
+pkgname=flat-remix
+pkgver=20220525
+pkgrel=1
+commitn=418146f142970647375800b743e43859ada34ab0
+pkgdesc="Flat Remix is an icon theme inspired by material design. It is mostly flat using a colorful palette with some shadows, highlights, and gradients for some depth."
+arch=('any')
+url='https://github.com/daniruiz/flat-remix/'
+license=('GPL3')
+options=('!strip')
+source=("git+${url}#commit=${commitn}")
+sha256sums=('SKIP')
+
+package() {
+	cd ${srcdir}/${pkgname}/
+	make install DESTDIR=${pkgdir}
+}
+

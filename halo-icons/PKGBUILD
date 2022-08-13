@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=halo-icons
+_pkgname=1.9.0.tar.gz
+pkgver=1.9.0
+pkgrel=1
+pkgdesc='Halo icons from Alejandro Camarena created for Deepin - usable for ArcoLinuxD Deepin and other DE'
+arch=('any')
+url='https://github.com/erikdubois/halo-icons'
+license=('GPL3')
+provides=("${pkgname}-${pkgver}")
+depends=('numix-icon-theme' 'gtk-update-icon-cache')
+conflicts=("halo-icons-git")
+source=("${url}/archive/refs/tags/${_pkgname}")
+sha512sums=('c7ab5bac910aadeeda8a95a2bd7823ef535d8db12c948bab89a7bacee750f2dc1e30959e7160229055abebd249241cf70e15620c61df899454f41ba3f92fa5c7')
+# options=('!strip')
+
+package() {
+  install -dm755 ${srcdir}/${pkgname}-${pkgver} ${pkgdir}/usr/share/icons
+  cp -r  ${srcdir}/${pkgname}-${pkgver}/HALO ${pkgdir}/usr/share/icons
+  cp -r  ${srcdir}/${pkgname}-${pkgver}/HALODARK ${pkgdir}/usr/share/icons
+}
+

@@ -1,0 +1,27 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=gtk-theme-elementary
+_pgkname=stylesheet
+pkgver=7.0.0
+pkgrel=1
+pkgdesc='The GTK Stylesheet for elementary OS'
+arch=('any')
+url='https://github.com/elementary/stylesheet'
+license=('GPL3')
+optdepends=('gtk-engine-murrine: GTK2 theme')
+makedepends=('meson' 'sassc')
+provides=("stylesheet-${pkgver}")
+conflicts=('gtk-theme-elementary-git')
+source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
+sha512sums=('c8eaf80c4c2449c8f8a0abae9b34e97f826a51bf695126f2bb97ea3762aff499e1dbf1a545022cee2f19cf555c5134b58967ddfe0c425d0c8c70ada1d739b4ab')
+
+
+build() {
+  arch-meson stylesheet-${pkgver} build
+  ninja -C build
+}
+
+package() {
+  DESTDIR="${pkgdir}" ninja -C build install
+}
+

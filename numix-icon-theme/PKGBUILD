@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=numix-icon-theme
+pkgver=21.10.31
+pkgrel=1
+pkgdesc='Numix is the official icon theme from the Numix Project'
+arch=('any')
+url='https://github.com/numixproject/numix-icon-theme'
+license=('GPL3')
+provides=("${pkgname}-${pkgver}")
+depends=('gtk-update-icon-cache')
+conflicts=("numix-icon-theme-git")
+source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
+sha512sums=('42a5baa04363fdebf1b01720e20fb21abe628d9726b7076c18a6f7a96785d8d13c117579e100a532816c54f09a44f0008cd89703d705a0288b8d8fedbe3c7bd8')
+
+package() {
+  install -dm755 ${srcdir}/${pkgname}-${pkgver} ${pkgdir}/usr/share/icons
+  mkdir -p ${pkgdir}/usr/share/licenses
+  cp -r  ${srcdir}/${pkgname}-${pkgver}/Numix ${pkgdir}/usr/share/icons
+  cp -r  ${srcdir}/${pkgname}-${pkgver}/Numix-Light ${pkgdir}/usr/share/icons
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}

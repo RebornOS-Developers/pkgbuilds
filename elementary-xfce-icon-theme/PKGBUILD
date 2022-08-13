@@ -1,0 +1,28 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=elementary-xfce-icon-theme
+fname=elementary-xfce
+pkgver=0.17
+pkgrel=1
+commitn=a1294f540f00b048740f26f175c5b35ba55bb311
+pkgdesc="This is an icon-theme maintained with Xfce in mind, but it should work on other desktops like Gnome as well."
+arch=('any')
+url="https://github.com/shimmerproject/elementary-xfce"
+license=('GPL3')
+depends=(gtk-update-icon-cache git)
+options=('!strip')
+source=("git+${url}#commit=${commitn}")
+sha512sums=('SKIP')
+
+package() {
+	mkdir -p ${pkgdir}/usr/share/icons
+	mkdir -p ${pkgdir}/usr/share/licenses/${fname}
+	cp -r ${srcdir}/${fname}/elementary-xfce ${pkgdir}/usr/share/icons
+	cp -r ${srcdir}/${fname}/elementary-xfce-dark ${pkgdir}/usr/share/icons
+	cp -r ${srcdir}/${fname}/elementary-xfce-darker ${pkgdir}/usr/share/icons
+	cp -r ${srcdir}/${fname}/elementary-xfce-darkest ${pkgdir}/usr/share/icons
+	install -m 644 ${srcdir}/${fname}/LICENSE ${pkgdir}/usr/share/licenses/${fname}
+	find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+	find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+

@@ -1,0 +1,21 @@
+# Maintainer: Daniel Ruiz de Alegria <daniel@drasite.com>
+# Modified by Rafael from azul
+
+pkgname="flat-remix-gtk"
+fname=Flat-Remix-GTK
+pkgver=20220627
+pkgrel=1
+commitn=39adb855b1d7c8a23e534d500cdccb845da4acf2
+pkgdesc="Flat Remix GTK theme is a pretty simple gtk window theme inspired on material design following a modern design using \"flat\" colors with high contrasts and sharp borders."
+arch=('any')
+url="https://github.com/daniruiz/Flat-Remix-GTK"
+license=('GPL 3.0')
+options=('!strip')
+makdepends=(git)
+source=("git+${url}#commit=${commitn}")
+sha256sums=('SKIP')
+
+package() {
+	cd "${srcdir}/${fname}/"
+	make install DESTDIR=${pkgdir}
+}

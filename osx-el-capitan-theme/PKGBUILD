@@ -1,0 +1,28 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=osx-el-capitan-theme
+_pkgname=macOS
+_pkgname2=OS-X-El-Capitan
+pkgdesc="Theme reproducing the clean and bright look of Apple OS macOS 11 Big Sur"
+pkgver=6.1
+pkgrel=1
+arch=('any')
+url="https://github.com/B00merang-Project/macOS"
+source=("${url}//archive/refs/tags/${pkgver}.tar.gz")
+# makedepends=('git')
+depends=('gtk3>=3.18' 'gtk-engine-murrine' 'gtk-engines')
+optdepends=('gnome-themes-standard: Required for the GTK3 theme')
+license=('GPL3')
+conflicts=('gnome-shell-theme-osx-el-capitan-git')
+sha512sums=('1081ef3134f1399789a36a6e30cebe3df9410fce64ecc0a114f2d4692112085ab8f760e1e6a7e812a3d1fc36fac05de4d2a4fee156f49150e751f3408bea3109')
+
+package() {
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+	if test -d "$srcdir/$_gitname/Wallpaper.jpg"
+	then
+		mkdir -p "${pkgdir}/usr/share/backgrounds"
+		mv 'Wallpaper.jpg' "${pkgdir}/usr/share/backgrounds"
+	fi
+	# Keep compatibility with old name
+	find . -type f -not -path './.git/*' -exec install -Dm644 '{}' "${pkgdir}/usr/share/themes/${_pkgname2}/{}" \;
+}

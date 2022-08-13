@@ -1,0 +1,28 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=osx-el-capitan-theme-dark
+_pkgname=macOS-Dark
+_pkgname2=OS-X-El-Capitan-Dark
+pkgdesc="Theme reproducing the clean and bright look of Apple OS macOS 11 Big Sur, in dark mode"
+pkgver=6.1
+pkgrel=1
+arch=('any')
+url="https://github.com/B00merang-Project/macOS-Dark"
+source=("${url}/archive/refs/tags/${pkgver}-dark.tar.gz")
+# makedepends=('git')
+depends=('gtk3>=3.18' 'gtk-engine-murrine' 'gtk-engines')
+optdepends=('gnome-themes-standard: Required for the GTK3 theme')
+license=('GPL3')
+conflicts=('gnome-shell-theme-osx-el-capitan-git')
+sha512sums=('f17074eeb0ca143a89aacba500935dcabb282a0004bfccc43878bf9a1fedd31356a1928fa34ca8eda41ad8831b6507725e2f7bd359c5bacd9dd5adb1f77f4031')
+
+package() {
+	cd "${srcdir}/${_pkgname}-${pkgver}-dark"
+	if test -d "$srcdir/$_gitname/Wallpaper.jpg"
+	then
+		mkdir -p "${pkgdir}/usr/share/backgrounds"
+		mv 'Wallpaper.jpg' "${pkgdir}/usr/share/backgrounds"
+	fi
+	# Keep compatibility with old name
+	find . -type f -not -path './.git/*' -exec install -Dm644 '{}' "${pkgdir}/usr/share/themes/${_pkgname2}/{}" \;
+}

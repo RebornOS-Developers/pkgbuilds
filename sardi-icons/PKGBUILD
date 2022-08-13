@@ -1,0 +1,31 @@
+# Maintainer: Julio González <juliolokooo@gmail.com>
+# Contributor: Erik Dubois <erik.dubois@gmail.com>
+# Modified by Rafael from azul
+
+pkgname=sardi-icons
+dirname=Sardi
+pkgver=22.07.01
+pkgrel=1
+release=22.07-01
+pkgdesc="Sardi is an icon collection for any linux distro with 6 different circular icons and 10 different kind of folders. "
+arch=('any')
+url="https://sourceforge.net/projects/sardi/files"
+license=('CC-BY-SA-4.0 License')
+makedepends=('git')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+options=(!strip !emptydirs)
+source=(sardi-icons::"${url}/${pkgname}-${release}.tar.gz"
+        "LICENSE")
+sha256sums=('6a6f082a58e57e0abc8a991eb8d033fa252fb101df746df0f8ef10811ccef209'
+            'f8353ab4b518616115e66045bf579949d198c2f728c2a5e6a26593b4793a7d7e')
+
+package() {
+           mkdir -p ${pkgdir}/usr/share/licenses/${dirname}
+           find ${srcdir} -type f -name "*.sh" -exec chmod 644 '{}' \;
+           install -dm 755 ${pkgdir}/usr/share/icons/
+           rm ${srcdir}/${pkgname}
+           cp -r ${srcdir}/* ${pkgdir}/usr/share/icons/
+           cp ${srcdir}/LICENSE ${pkgdir}/usr/share/licenses/${dirname}
+           rm ${pkgdir}/usr/share/icons/LICENSE
+}

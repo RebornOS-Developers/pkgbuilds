@@ -1,0 +1,26 @@
+# Maintainer: Rafael <rafael@rebornos.org>
+
+pkgname=simply-circles-icons
+namefold=Simply-Circles-GNOME
+pkgver=20211001
+pkgrel=1
+commitn=6e2985c5affa161df3daed95be6b2dc1cfb2b4d6
+pkgdesc='Monochrome icons with some brush strokes of color.'
+arch=('any')
+url='https://github.com/ju1464/Simply_Circles_Icons'
+license=('GPL3')
+provides=("${pkgname}")
+source=("${pkgname}::git+${url}#commit=${commitn}")
+sha512sums=('SKIP')
+
+pkgver() {
+    date +%Y%m%d
+}
+
+package() {
+  mkdir -p ${pkgdir}/usr/share/icons
+  cp -r ${srcdir}/${pkgname}/${namefold}/* ${pkgdir}/usr/share/icons/
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+

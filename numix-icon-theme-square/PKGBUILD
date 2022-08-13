@@ -1,0 +1,24 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=numix-icon-theme-square
+pkgver=22.08.07
+pkgrel=1
+pkgdesc='Square is an icon theme for Linux from the Numix project'
+arch=('any')
+url='https://github.com/numixproject/numix-icon-theme-square'
+license=('GPL3')
+provides=("${pkgname}-${pkgver}")
+depends=('numix-icon-theme' 'gtk-update-icon-cache')
+conflicts=("numix-square-icon-theme-git" "numix-square-icon-theme")
+source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
+sha512sums=('55e782c64d9cfc73bf7553171ca95b6effd463f4c62bb92af906e62c7ddd27c34f8b694788e9ec68a7b139e56d17934a93d039412b597a89197572ee46eedfb1')
+# options=('!strip')
+
+package() {
+  install -dm755 ${srcdir}/${pkgname}-${pkgver} ${pkgdir}/usr/share/icons
+  mkdir -p ${pkgdir}/usr/share/licenses
+  cp -r  ${srcdir}/${pkgname}-${pkgver}/Numix-Square ${pkgdir}/usr/share/icons
+  cp -r  ${srcdir}/${pkgname}-${pkgver}/Numix-Square-Light ${pkgdir}/usr/share/icons
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}

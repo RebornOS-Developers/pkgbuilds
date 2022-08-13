@@ -1,0 +1,26 @@
+#Maintainer Rafael <rafael@rebornos.org>
+
+pkgname=evolvere-icons-2
+nname=Evolvere-Icons
+pkgver=20220527
+pkgrel=1
+commitn=08cb5729208af188bd21e74df169e850752744f9
+pkgdesc="Flat with touches of realism"
+arch=("any")
+license=('CC-BY-SA-4.0 License')
+url="https://github.com/franksouza183/Evolvere-Icons"
+makedepends=("git")
+source=("git+${url}#commit=${commitn}")
+md5sums=("SKIP")
+options=("!strip")
+
+pkgver() {
+    date +%Y%m%d
+}
+
+package() {
+  mkdir -p ${pkgdir}/usr/share/icons/${pkgname}
+  mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+  cp -r ${srcdir}/${nname}/* ${pkgdir}/usr/share/icons/${pkgname}
+  cp ${srcdir}/${nname}/LICENSE ${pkgdir}/usr/share/licenses/${pkgname}
+}

@@ -1,0 +1,24 @@
+# Maintainer: Rafael from azul repository
+
+pkgname=masalla-icon-theme
+pkgver=1.5.1
+pkgrel=1
+commitn=cbbbf3bbcfd7185caee1bcce60f97fb11b2b1903
+pkgdesc='Masalla icon theme. Light and dark.'
+arch=('any')
+url='https://notabug.org/masalla-art/masalla-icon-theme'
+license=('GPL')
+source=("${pkgname}::git+${url}#commit=${commitn}")
+sha512sums=('SKIP')
+
+package() {
+  install -dm755 ${pkgdir}/usr/share/icons/masalla
+  install -dm755 ${pkgdir}/usr/share/icons/masalla-dark
+  install -dm755 ${pkgdir}/usr/share/licenses/${pkgname}
+  cp -r ${srcdir}/${pkgname}/masalla/* ${pkgdir}/usr/share/icons/masalla
+  cp -r ${srcdir}/${pkgname}/masalla/* ${pkgdir}/usr/share/icons/masalla-dark
+  cp ${srcdir}/${pkgname}/LICENSE.txt ${pkgdir}/usr/share/licenses/${pkgname}
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+

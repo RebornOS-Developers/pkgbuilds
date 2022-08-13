@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=pocillo-icon-theme
+_pkgname=pocillo
+_pkgname2=Pocillo
+pkgver=0.13.8
+pkgrel=1
+pkgdesc="It is based upon icons from the Faba and Moka icon themes by Sam Hewitt"
+arch=('any')
+url="https://github.com/UbuntuBudgie/pocillo"
+license=('GPL3')
+depends=('gtk-update-icon-cache')
+options=('!strip')
+source=("git+${url}")
+sha256sums=('SKIP')
+
+package() {
+	mkdir -p ${pkgdir}/usr/share/icons
+	cp -r ${srcdir}/${_pkgname}/${_pkgname2} ${pkgdir}/usr/share/icons
+	find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+        find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+
