@@ -1,0 +1,22 @@
+# Maintainer: Rafael <rcostarega@yahoo.com>
+# Created by azul repository
+# Fix file selection dialog issue.
+# It is now possible to use the mouse to select a file.
+
+pkgname=virtualbox-kde-patch
+pkgver=1
+pkgrel=1
+pkgdesc='Allows the correct operation of the file opening dialog under Plasma (KDE)'
+arch=('any')
+url='https://gitlab.com/azul4/content/plasma/virtualbox-kde-patch'
+license=('GPL3')
+source=("virtboxk" "virtualbox-kde.desktop")
+sha512sums=('4fff044731817e58433885cc52e230c117da471056b678ba1563948b7edc2156ea95711a3e148d13eab2e2188c06b65f081ada37ed73b66a1aaee4c4843dfc81'
+            '5e237a0e092439732cdf8d05ea6e581f7aad4fc64c687294078abfc81023f5fd776c0cefca8c5e8163e62a97c4050e790132e563d0b69c0bf002c136ab06c9ce')
+
+package() {
+    install -d ${pkgdir}/usr/bin
+    install -d ${pkgdir}/usr/share/applications
+    install -D -m 755 virtboxk ${pkgdir}/usr/bin/virtboxk
+    install -D -m 644 virtualbox-kde.desktop ${pkgdir}/usr/share/applications
+          }

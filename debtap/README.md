@@ -1,0 +1,12 @@
+# debtap
+
+A script to convert .deb packages to Arch Linux packages, focused on accuracy. Do not use it to convert packages that already exist on official repositories or can be built from AUR!
+
+https://github.com/helixarch/debtap
+
+How to clone this repo:
+
+```
+git clone https://gitlab.com/rebornos-team/rebornos-packages/debtap.git
+```
+

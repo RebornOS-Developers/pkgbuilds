@@ -1,0 +1,26 @@
+# Maintainer: Rafael <rafael@rebornos.org>
+
+pkgname=ttf-inter
+_pkgname=Inter-3.19
+pkgver=3.19
+pkgrel=1
+pkgdesc="Inter is a typeface specially designed for user interfaces with focus on high legibility of small-to-medium sized text on computer screens."
+arch=(any)
+url="https://github.com/rsms/inter"
+license=('OFL')
+groups=("${_group}-fonts")
+depends=('fontconfig' 'xorg-font-util')
+provides=("${pkgname}")
+source=("${url}/releases/download/v${pkgver}/${_pkgname}.zip")
+
+package() {
+ 
+  mkdir -p ${pkgdir}/usr/share/fonts/TTF/Inter
+  mkdir -p ${pkgdir}/usr/share/licenses/Inter
+  cp ${srcdir}/LICENSE.txt ${pkgdir}/usr/share/licenses/Inter
+  cp -r ${srcdir}/"Inter Hinted for Windows"/Desktop/* ${pkgdir}/usr/share/fonts/TTF/Inter
+  #find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  #find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+ }
+
+md5sums=('877b65f515a6344e3ef1ccef73baaad2')

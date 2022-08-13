@@ -1,0 +1,36 @@
+# Maintainer: Rafael <rcostarega@gmail.com> from azul repository
+
+pkgname=mintstick
+pkgver=1.5.0
+pkgrel=1
+pkgdesc='A GUI to write .img or .iso files to a USB Key. It can also format them'
+arch=('any')
+url="http://packages.linuxmint.com/pool/main/m/${pkgname}"
+license=(GPL)
+depends=(coreutils desktop-file-utils dosfstools e2fsprogs exfat-utils glib2 gtk3 ntfs-3g
+         parted polkit procps-ng python python-dbus python-gobject python-pyparted python-xapp
+         udisks2 util-linux xapps)
+makedepends=(gettext)
+conflicts=(mintstick-git)
+source=("${pkgname}-${pkgver}.tar.xz::${url}/${pkgname}_${pkgver}.tar.xz")
+sha512sums=('8b3b710117335a481ec7281c47f01b0750d9b20984cfaebb0bc7d1922c91ad676a591bcec1f0f3e12c5dc61cf057f20bd843b00c516d5dd272725b7f33b606d2')
+
+package() {
+  install -dm755 ${pkgdir}/usr/bin
+  install -dm755 ${pkgdir}/usr/share/applications/
+  install -dm755 ${pkgdir}/usr/share/icons/
+  install -dm755 ${pkgdir}/usr/share/mintstick/
+  install -dm755 ${pkgdir}/usr/share/nemo/actions/
+  install -dm755 ${pkgdir}/usr/share/polkit-1/actions/
+  install -dm755 $pkgdir/usr/lib/mintstick/
+  install -dm755 ${pkgdir}/usr/share/licenses/${pkgname}
+  install -m644 ${srcdir}/${pkgname}/share/applications/* $pkgdir/usr/share/applications/
+  install -m644 ${srcdir}/${pkgname}/share/icons/hicolor/96x96/apps/${pkgname}.svg ${pkgdir}/usr/share/icons/
+  install -m644 ${srcdir}/${pkgname}/share/mintstick/* ${pkgdir}/usr/share/mintstick/
+  install -m644 ${srcdir}/${pkgname}/share/nemo/actions/* ${pkgdir}/usr/share/nemo/actions/  
+  install -m755 ${srcdir}/${pkgname}/lib/* $pkgdir/usr/lib/mintstick/
+  install -m755 ${srcdir}/${pkgname}/mintstick ${pkgdir}/usr/bin
+  install -m644 ${srcdir}/${pkgname}/share/polkit/* ${pkgdir}/usr/share/polkit-1/actions
+  install -m644 ${srcdir}/${pkgname}/COPYING ${pkgdir}/usr/share/licenses/${pkgname}
+}
+

@@ -1,0 +1,23 @@
+# Maintainer: Rafael from azul
+# v4.21.1.4960
+
+pkgname=4kvideodownloader
+pkgver=4.21.1
+pkgrel=1
+pkgdesc="Enjoy videos anywhere, anytime regardless of whether you are offline."
+arch=('x86_64')
+url="https://dl.4kdownload.com/app"
+license=('Custom')
+makedepends=('make')
+provides=(${pkgname})
+conflicts=(${pkgname})
+source=(${url}/${pkgname}_${pkgver}-1_amd64.deb)
+sha512sums=('f96d959c2b30129cc09907261b935921c9f2f489cfbf97a09f1805180ff60b785de7610978de87a6bbb55efbed963b6bb56afc1c5ca0bf4621143061bf0ad809')
+
+package() {
+           mkdir -p ${pkgdir}/usr/bin
+           tar -xvf ${srcdir}/data.tar.xz
+           cp -r ${srcdir}/usr/* ${pkgdir}/usr/
+           cp ${pkgdir}/usr/lib/${pkgname}/${pkgname}.sh ${pkgdir}/usr/bin/${pkgname}
+}
+

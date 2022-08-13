@@ -1,0 +1,35 @@
+# Maintainer: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
+# Contributor: Jeremy Cowgar <jeremy@cowgar.com>
+# PKGBUILD Updated by Rafael (RebornOS)
+
+pkgname=empty
+pkgver=0.6.21b
+pkgrel=1
+pkgdesc="Run applications under pseudo-terminal sessions"
+arch=('i686' 'x86_64')
+url="https://sourceforge.net/projects/empty/files/"
+license=('custom')
+source=("${url}/${pkgname}/${pkgname}-${pkgver}/${pkgname}-${pkgver}.tgz")
+sha256sums=('2fccd0faa1b3deaec1add679cbde3f34250e45872ad5df463badd4bb4edeb797')
+
+build() {
+  cd ${srcdir}
+
+# man pages to the right location
+  sed -e 's|/man/man1|/share/man/man1|g' -i Makefile
+
+  make
+}
+
+package() {
+  cd ${srcdir}
+
+  make PREFIX="${pkgdir}"/usr install
+
+# license file
+  install -Dm644 COPYRIGHT "${pkgdir}"/usr/share/licenses/$pkgname/COPYRIGHT
+
+# docs
+  install -Dm644 CHANGELOG "${pkgdir}"/usr/share/doc/$pkgname/CHANGELOG
+  install -Dm644 README "${pkgdir}"/usr/share/doc/$pkgname/README
+}

@@ -1,0 +1,21 @@
+# Maintainer: Markus Weimar <mail@markusweimar.de>
+# Modify by Rafael from RebornOS
+
+pkgname=ttf-asap
+fontname=Asap
+pkgver=3.001
+pkgrel=1
+pkgdesc='Contemporary sans-serif typeface family from Omnibus-Type.'
+arch=('any')
+url='https://www.omnibus-type.com/fonts/asap/'
+urldown='https://www.omnibus-type.com/wp-content/uploads'
+license=('OFL')
+source=("${urldown}/${fontname}.zip")
+sha256sums=('f13bf6bf6a53a83fce63930cee0ed89144d6ec69a60f4f7642e1fde9cb996917')
+
+package() {
+    mkdir -p ${pkgdir}/usr/share/fonts/TTF/${fontname}
+    mkdir -p ${pkgdir}/usr/share/licenses/${fontname}
+    cp -r ${srcdir}/${fontname}/ttf/* ${pkgdir}/usr/share/fonts/TTF/${fontname}
+    cp ${srcdir}/${fontname}/OFL.txt ${pkgdir}/usr/share/licenses/${fontname}
+}

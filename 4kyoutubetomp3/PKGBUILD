@@ -1,0 +1,23 @@
+# Maintainer: Rafael from azul
+# v4.6.1.4960
+
+pkgname=4kyoutubetomp3
+pkgver=4.6.1
+pkgrel=1
+pkgdesc="Turn YouTube links into MP3 files in one click."
+arch=('any')
+url="https://dl.4kdownload.com/app"
+license=('Custom')
+makedepends=('make')
+provides=(${pkgname})
+conflicts=(${pkgname})
+source=(${url}/${pkgname}_${pkgver}-${pkgrel}_amd64.deb)
+sha512sums=('183e0c4ddc0fb767e7a9a7390d222c0a3cdf86a651933a04ec3b46f8027107973a313cd770bbec7659fedcf4f6d26840c004f3a9b66ac4c904226e493a413d57')
+
+package() {
+           mkdir -p ${pkgdir}/usr/bin
+           tar -xvf ${srcdir}/data.tar.xz
+           cp -r ${srcdir}/usr/* ${pkgdir}/usr/
+           cp ${pkgdir}/usr/lib/${pkgname}/${pkgname}.sh ${pkgdir}/usr/bin/${pkgname}
+}
+

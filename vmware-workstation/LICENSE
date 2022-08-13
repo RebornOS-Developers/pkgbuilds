@@ -1,0 +1,49 @@
+Licensing and Registration
+
+Is VMware Workstation Free?
+VMware Workstation has multiple licensing options depending on your use case. 
+Workstation Player is available Free for personal, non-commercial use, but
+requires a license for commercial use. A valid Commercial license will remove
+the ‘Non-commercial use only’ banner placed within the product.
+VMware Workstation Pro requires a paid license for personal and commercial uses,
+with different terms for each as defined by the VMware Product Guide
+
+
+
+How do I register my copy of VMware Workstation Pro with VMware?
+
+If you purchased the product from the VMware Online store, your license key is
+automatically registered. If you purchased from a reseller, you may need to
+manually register your license key in Customer Connect. Please consult this
+KB article for detailed instructions on license key registration.
+
+
+ 
+Can I switch between Windows and Linux versions?
+
+Yes. You can switch between Windows and Linux versions of VMware Workstation Pro
+using the same license key. If you decide to switch host operating systems, you
+must uninstall Workstation Pro from the host operating system you no longer plan
+to use. If you plan to run VMware Workstation Pro on a Linux host and a Windows
+host, you need to purchase two licenses.
+
+
+
+Can I use Workstation on Mac operating systems?
+
+While Workstation Pro and Player do not run on macOS, the licenses are compatible
+with VMware Fusion Pro and Fusion Player for Mac, respectively. VMware allows you
+to use your personal Workstation Pro or Player license to run virtual machines,
+containers and Kubernetes clusters on up to 3 devices that you personally own,
+including Apple devices. To facilitate this, a Workstation 16 Pro license can be
+used to license VMware Fusion 12 Pro, and a Workstation 16 Player license can be
+used to license VMware Fusion 12 Player as 1 of the total 3 devices entitled. 
+Corporate accounts must purchase 1 commercial license for each unique device.
+
+
+ 
+Are students and professors eligible to receive special academic pricing for a
+full license of VMware Workstation?
+
+Yes. Students and professors can purchase VMware Workstation products at our
+standard academic pricing by ordering directly from VMware Academic Store. 

@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=redshiftgui
+_pkgname=RedshiftGUI-0.2.4-Linux-x86_64
+pkgver=0.2.4
+pkgrel=1
+pkgdesc='Numix is the official icon theme from the Numix Project'
+arch=('any')
+url='https://github.com/maoserr/redshiftgui'
+license=('GPL3')
+conflicts=("redshiftgui-bin")
+source=("${url}/releases/download/0.2.4-Arch64/${_pkgname}.tar.gz")
+sha512sums=('6bd71705a0927e1f6be489a3ca4d4d07887de158babcaf796524768443d1042cd3304b86fa7a7bd81af8f10ff81928b75e36dcc4625d630f4f2d71ad4a55f974')
+
+package() {
+  install -dm755 ${srcdir}/${_pkgname} ${pkgdir}/usr/
+  mkdir -p ${pkgdir}/usr/
+  cp -r  ${srcdir}/${_pkgname}/bin ${pkgdir}/usr/
+  cp -r  ${srcdir}/${_pkgname}/share ${pkgdir}/usr/
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+}
+

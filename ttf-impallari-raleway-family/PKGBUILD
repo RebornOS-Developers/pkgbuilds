@@ -1,0 +1,42 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=ttf-impallari-raleway-family
+_pkgname=Raleway
+_pkgname2=impallari
+pkgver=3.001
+pkgrel=1
+pkgdesc="Initially designed by Matt McInerney as a single thin weight"
+arch=(any)
+url="https://github.com/impallari/Raleway"
+license=('OFL')
+groups=("${_group}-fonts")
+depends=('fontconfig' 'xorg-font-util')
+conflicts=('ttf-raleway')
+provides=('ttf-raleway')
+source=("git+${url}"
+        "https://raw.githubusercontent.com/impallari/Raleway/master/OFL.txt"
+        "https://raw.githubusercontent.com/impallari/Raleway/master/CONTRIBUTORS.txt"
+        "https://raw.githubusercontent.com/impallari/Raleway/master/FONTLOG.txt"
+        "https://raw.githubusercontent.com/impallari/Raleway/master/README.md")
+
+package() {
+ 
+  mkdir -p ${pkgdir}/usr/share/fonts/TTF/${_pkgname2}
+  mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+  mkdir -p ${pkgdir}/usr/share/docs/${pkgname}
+  cp OFL.txt ${pkgdir}/usr/share/licenses/${pkgname}
+  cp CONTRIBUTORS.txt ${pkgdir}/usr/share/docs/${pkgname}
+  cp FONTLOG.txt ${pkgdir}/usr/share/docs/${pkgname}
+  cp README.md ${pkgdir}/usr/share/docs/${pkgname}
+  cd ${_pkgname}/fonts/"v3.000 Fontlab"/TTF
+  cp -r * ${pkgdir}/usr/share/fonts/TTF/${_pkgname2}
+  find ${pkgdir}/usr -type f -exec chmod 644 {} \;
+  find ${pkgdir}/usr -type d -exec chmod 755 {} \;
+
+ }
+
+md5sums=('SKIP'
+         '52a45f434f9a511a88f9e2adeead6e06'
+         '7277dc8d4e38b6a287b20fb9b099341c'
+         '9305580e67ac5887264260081a59adfc'
+         '2f1585bed1b5d2fa2289c97af17a9a4e')

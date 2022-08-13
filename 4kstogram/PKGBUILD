@@ -1,0 +1,23 @@
+# Maintainer: Rafael from RebornOS
+# v4.3.2.4230
+
+pkgname=4kstogram
+pkgver=4.3.2
+pkgrel=1.1
+pkgdesc="Download Instagram photos, accounts, hashtags and locations."
+arch=('x86_64')
+url="https://dl.4kdownload.com/app"
+license=('Custom')
+makedepends=('make')
+provides=(${pkgname})
+conflicts=(${pkgname})
+source=(${url}/${pkgname}_${pkgver}-1_amd64.deb)
+sha512sums=('96866127db931d23718619d8e02acce094d6f4d82054f2c1bfb4e74b1c56451bd648bd64fd7d99e796281c59eb56a71ab7bab5894749ee92ab7d79ebce9786a6')
+
+package() {
+           mkdir -p ${pkgdir}/usr/bin
+           tar -xvf ${srcdir}/data.tar.xz
+           cp -r ${srcdir}/usr/* ${pkgdir}/usr/
+           cp ${pkgdir}/usr/lib/${pkgname}/${pkgname}.sh ${pkgdir}/usr/bin/${pkgname}
+}
+

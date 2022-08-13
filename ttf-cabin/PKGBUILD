@@ -1,0 +1,20 @@
+# Maintainer: Rafael from RebornOS
+
+pkgname=ttf-cabin
+fontname=Cabin
+pkgver=3.001
+pkgrel=1
+pkgdesc='The Cabin font family is a humanist sans with 4 weights and true italics, with a touch of modernism'
+arch=('any')
+url='https://github.com/impallari/Cabin'
+license=('OFL')
+source=("git+${url}")
+sha256sums=('SKIP')
+
+package() {
+    mkdir -p ${pkgdir}/usr/share/fonts/TTF/${fontname}
+    mkdir -p ${pkgdir}/usr/share/licenses/${fontname}
+    cp -r ${srcdir}/${fontname}/fonts/TTF/* ${pkgdir}/usr/share/fonts/TTF/${fontname}
+    rm -r ${pkgdir}/usr/share/fonts/TTF/${fontname}/qa-files
+    cp ${srcdir}/${fontname}/OFL.txt ${pkgdir}/usr/share/licenses/${fontname}
+}

@@ -1,0 +1,23 @@
+# Maintainer: Rafael from azul
+# v1.4.2.0410
+
+pkgname=4ktokkit
+pkgver=1.4.2
+pkgrel=1
+pkgdesc="Download all videos from TikTok hashtags and users in one click."
+arch=('x86_64')
+url="https://dl.4kdownload.com/app"
+license=('Custom')
+makedepends=('make')
+provides=(${pkgname})
+conflicts=(${pkgname})
+source=(${url}/${pkgname}_${pkgver}-1_amd64.deb)
+sha512sums=('471e3ab49cfb6350093befd0b80bce9e56814a73d3ede88a5c1f6cd4da545bbda517a22f26bfb7671e99a8c4b022a50a5fc2d33b27dd0969c8035e3c07cbb76c')
+
+package() {
+           mkdir -p ${pkgdir}/usr/bin
+           tar -xvf ${srcdir}/data.tar.xz
+           cp -r ${srcdir}/usr/* ${pkgdir}/usr/
+           cp ${pkgdir}/usr/lib/${pkgname}/${pkgname}.sh ${pkgdir}/usr/bin/${pkgname}
+}
+

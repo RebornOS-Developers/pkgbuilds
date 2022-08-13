@@ -1,0 +1,3 @@
+#!/bin/sh
+
+KDE_FULL_SESSION= XDG_CURRENT_DESKTOP= DESKTOP_SESSION= virtualbox %U

@@ -1,0 +1,25 @@
+# Maintainer: Manifest0
+# Contributor: Dimitris Kiziridis <ragouel at outlook dot com>
+# Contributor: Frederic Bezies <fredbezies at gmail dot com>
+# Contributor: liberodark
+# Modified by Rafael from azul
+
+pkgname=frostwire
+pkgver=6.9.8
+pkgrel=1
+buildn=build-312
+pkgdesc='Cloud Downloader, BitTorrent Client and Media Player'
+arch=('x86_64')
+url='http://www.frostwire.com'
+urldown='https://github.com/frostwire/frostwire/releases/download'
+license=('GPL')
+depends=('hicolor-icon-theme' 'java-environment' 'bash' 'zlib')
+optdepends=('mplayer: Media playback support')
+source=(${urldown}/${pkgname}-desktop-${pkgver}-${buildn}/${pkgname}-${pkgver}.amd64.deb)
+sha256sums=('ca7998987924bbcd4193a083c570fb287ab553890fe7b086606a9ad65efe7515')
+
+
+ 
+package() {
+  tar xvf data.tar.xz -C "${pkgdir}"
+}
