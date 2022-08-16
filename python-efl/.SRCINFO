@@ -1,0 +1,16 @@
+pkgbase = python-efl
+	pkgdesc = Python bindings for the Enlightenment Foundation Libraries
+	pkgver = 1.26.0
+	pkgrel = 1
+	url = http://www.enlightenment.org
+	arch = i686
+	arch = x86_64
+	license = LGPL3
+	license = GPL3
+	depends = efl>=1.26.0
+	depends = python-dbus
+	source = http://download.enlightenment.org/rel/bindings/python/python-efl-1.26.0.tar.xz
+	sha256sums = b0089cb9bc29c406f884c729dcd5dd486fd8efb794b5b980bf138e6189704636
+
+pkgname = python-efl
+
